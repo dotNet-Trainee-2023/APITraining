@@ -1,8 +1,6 @@
-﻿using System.Text.Json.Serialization;
-
-namespace APITraining.Models
+﻿namespace APITraining.Models.Dto
 {
-    public class Place
+    public class PlaceDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -1,5 +1,6 @@
 
 using APITraining.Data;
+using APITraining.services;
 using Microsoft.EntityFrameworkCore;
 
 namespace APITraining
@@ -18,6 +19,8 @@ namespace APITraining
 
             //adding dbcontext
             builder.Services.AddDbContext<ApiDBContext>(options => options.UseSqlServer(conxString));
+
+            builder.Services.AddScoped<IPlaceServices, PlaceServices>();
 
             builder.Services.AddControllers().AddNewtonsoftJson();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
