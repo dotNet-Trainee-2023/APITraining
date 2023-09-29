@@ -1,5 +1,6 @@
 
 using APITraining.Data;
+using APITraining.Mappings;
 using APITraining.services;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,9 @@ namespace APITraining
 
             //adding dbcontext
             builder.Services.AddDbContext<ApiDBContext>(options => options.UseSqlServer(conxString));
+
+            //automapper DI.
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
             builder.Services.AddScoped<IPlaceServices, PlaceServices>();
 
