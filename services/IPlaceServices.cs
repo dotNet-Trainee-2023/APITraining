@@ -5,7 +5,7 @@ namespace APITraining.services
 {
     public interface IPlaceServices
     {
-        Task<List<Place>> GetAllAsync();
+        Task<List<Place>> GetAllAsync(int pageNumber = 1, int pageSize = 10);
 
         Task<Place> GetbyIdAsync(Guid id);
 

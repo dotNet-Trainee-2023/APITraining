@@ -13,7 +13,7 @@ namespace APITraining.services
             _dbContext = dbContext;
         }
 
-        public async Task<Place>  CreateAsync(Place place)
+        public async Task<Place> CreateAsync(Place place)
         {
             //Add to db
             await _dbContext.Places.AddAsync(place);
@@ -23,16 +23,21 @@ namespace APITraining.services
         }
 
         public async Task<Place> DeleteAsync(Place place)
-        { 
+        {
             _dbContext.Places.Remove(place);
             await _dbContext.SaveChangesAsync();
 
             return place;
         }
 
-        public async Task<List<Place>> GetAllAsync()
+        public async Task<List<Place>> GetAllAsync(int pageNumber = 1, int pageSize = 10)
         {
-             return await _dbContext.Places.ToListAsync();
+            var places = _dbContext.Places;
+
+            //for pagination
+            var skipResults = (pageNumber - 1) * pageSize;
+
+            return await places.Skip(skipResults).Take(pageSize).ToListAsync();
         }
 
         public async Task<Place> GetbyIdAsync(Guid id)
